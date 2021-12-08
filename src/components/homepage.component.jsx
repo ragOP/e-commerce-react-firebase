@@ -6,7 +6,7 @@ import MenuItem from "./menu-item/menu-item.component";
 const HomePage = () => (
   <div className='homepage'>
   <Directory/>
-  <MenuItem/>
+  {/* <MenuItem/> */}
 
   </div>
 );
