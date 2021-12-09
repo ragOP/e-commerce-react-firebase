@@ -3,6 +3,13 @@ import React from 'react';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
+
+import { authentication } from '../../firebase/firebase.util'
+import { getAuth, signOut } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+
+
 import './sign-in.component.css';
 
 class SignIn extends React.Component {
@@ -26,6 +33,27 @@ class SignIn extends React.Component {
 
     this.setState({ [name]: value });
   };
+ sign = () => 
+  {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(authentication, provider)
+      .then((re) => {
+        console.log(re);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+ log=()=>
+{
+  const auth = getAuth();
+signOut(auth).then(() => {
+  console.log(auth,' Sign-out successful.')
+  // Sign-out successful.
+}).catch((error) => {
+  console.log(error);
+});
+}
 
   render() {
     return (
@@ -50,8 +78,10 @@ class SignIn extends React.Component {
             label='password'
             required
           />
-          <CustomButton type='submit'> Sign in </CustomButton>
+          <CustomButton  type='submit'> Sign in </CustomButton>
+          <CustomButton  onClick={this.sign}> Sign in With Google </CustomButton>
         </form>
+      
       </div>
     );
   }
