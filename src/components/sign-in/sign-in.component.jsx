@@ -78,8 +78,11 @@ signOut(auth).then(() => {
             label='password'
             required
           />
+          <div className="buttons">
           <CustomButton  type='submit'> Sign in </CustomButton>
-          <CustomButton  onClick={this.sign}> Sign in With Google </CustomButton>
+          <CustomButton  onClick={this.sign} isGoogleSignIn>Sign in with Google</CustomButton>
+          </div>
+         
         </form>
       
       </div>
